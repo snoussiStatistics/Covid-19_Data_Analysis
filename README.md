@@ -8,11 +8,11 @@ the data was downloaded from this site https://ourworldindata.org/coronavirus-so
 ## First task 
 
 My first task will be to create functions easy to use in order to avoid repetetion of the ggplot routine, 
-for visualizing data change over time for a given variable and a given coutry (or countries).
+for visualizing data change over time for a given variable and a given country (or countries).
 
 - MakePlot(country,variable)
 - distinguishFrom(country , continent , variable)
 - comparePlots(countries , variable ) 
 
-you will find a file named functions.r wich contain the code for these 3 function and a furthermore explanation of the usage of the functions.
+you will find a file named functions.r in this repo which contain the code for these 3 function and a furthermore explanation of the usage of the functions.
 
