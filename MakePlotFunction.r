@@ -40,61 +40,53 @@ makePlot <- function( country ,  variable = "new_cases"  ) {
               
 }
 
+# Testing 
 
 makePlot("Tunisia",variable = "new_deaths_per_million")
 makePlot("India",variable = "new_deaths_per_million")
 makePlot("France",variable = "new_deaths_per_million")
 
 
+# The Comparison plotting Function 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-ComapreCountries <- function( vector_of_countries , variable = "new_cases", DifferentPlot = T){
-        
-        #Create the table 
-        
-        plottingTable <- covid_data[covid_data$location %in% vector_of_countries,]
-        
-        # Create The plot 
-             library(ggplot2) 
-        if (DifferentPlot == T) {
-        ggplot(data = plottingTable, aes(x = date , y = plottingTable[,variable] ), color = location) + 
-                geom_point( size = I(3) , alpha = 0.5)+ 
-                facet_wrap(facets = plottingTable$location)
-                        
-                }else {
-                        
-                     ggplot(data = plottingTable, aes(x = date , y = plottingTable[,variable]), color = location) + 
-                geom_point( size = I(3) , alpha = 0.5)
-                }
-                        
+comparePlots <- function(vector_of_countries , variable = "new_cases" , facets = T){
+    
+    if( facets == T ) {
+        library(ggplot2)
+        plottingData <- covid_data[covid_data$location %in% vector_of_countries,  ]
+        ggplot(data = plottingData , aes(x = date , y = plottingData[,variable] , color = location))+
+            geom_point() + 
+            facet_wrap(facets = plottingData$location)+
+            ylab(gsub(pattern = "_" , replacement = " " , x = variable)) + 
+            ggtitle(label =  gsub(pattern = "_" , replacement = " " , x = variable),     
+                    subtitle = "Covid-19"
+            )     +
+            
+            theme(plot.title = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))
         
         
+    } else {
+        plottingData <- covid_data[covid_data$location %in% vector_of_countries,  ]
+        ggplot(data = plottingData , aes(x = date , y = plottingData[,variable]  , color = location))+
+            geom_point() + 
+            ylab(gsub(pattern = "_" , replacement = " " , x = variable)) + 
+            ggtitle(label =  gsub(pattern = "_" , replacement = " " , x = variable),     
+                    subtitle = "Covid-19"
+            )     +
+            
+            theme(plot.title = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))
+    }
+    
+    
+    
+    
+    
 }
 
 
-ComapreCountries(c("Tunisia","India"))
-vector_of_countries <- c("Tunisia","India")
+comparePlots(c("Tunisia","Germany","Italy"),variable = "new_deaths_per_million" , facet = F)
+
+
 
 
 
