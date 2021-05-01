@@ -40,7 +40,6 @@ makePlot <- function( country ,  variable = "new_cases"  ) {
               
 }
 
-# Testing 
 
 makePlot("Tunisia",variable = "new_deaths_per_million")
 makePlot("India",variable = "new_deaths_per_million")
@@ -85,6 +84,39 @@ comparePlots <- function(vector_of_countries , variable = "new_cases" , facets =
 
 
 comparePlots(c("Tunisia","Germany","Italy"),variable = "new_deaths_per_million" , facet = F)
+comparePlots(c("Tunisia","Germany","Italy"),variable = "new_deaths_per_million" , facet = T)
+
+# The distinguish a country from a continent function.
+
+distinguishFrom <- function(country , continent , variable) {
+    
+    
+    fromData <- covid_data[covid_data$continent == continent,]
+    distgData <- covid_data[covid_data$location == country,]
+    
+    library(ggplot2)
+    
+    ggplot(data = fromData, aes(x = date , y = fromData[, variable])) +
+        
+        geom_point(color = "Red", size = I(3) , alpha = 0.3)  +
+        
+        geom_point(data = distgData , 
+                   aes(x = date , y = distgData[, variable]), 
+    color = "Blue" ,
+    size = I(3) , alpha = 0.6 ) + 
+      
+    
+    ylab(gsub(pattern = "_" , replacement = " " , x = variable)) +
+    ggtitle(label =  gsub(pattern = "_" , replacement = " " , x = variable),
+            subtitle = paste(country , continent , sep = " relatively to ") ) +
+    
+    theme(plot.title = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))
+
+
+}
+
+distinguishFrom(country = "Tunisia",continent = "Africa",variable = "new_cases")
+distinguishFrom("Tunisia", continent = "Africa" , variable = "new_deaths_per_million")
 
 
 
