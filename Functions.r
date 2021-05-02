@@ -42,8 +42,7 @@ makePlot <- function( country ,  variable = "new_cases"  ) {
 
 
 makePlot("Tunisia",variable = "new_deaths_per_million")
-makePlot("India",variable = "new_deaths_per_million")
-makePlot("France",variable = "new_deaths_per_million")
+
 
 
 # The Comparison plotting Function 
