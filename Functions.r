@@ -20,29 +20,33 @@ covid_data$location <- factor(covid_data$location)
 # country and variable.
 
 makePlot <- function( country ,  variable = "new_cases"  ) {
+    
+    # Create the table containing only the data for the choosen country 
+    
+    plottingData <- covid_data[covid_data$location == country,]
+    
+    # Create the plot for the choosen variable againt the date.
+    
+    library(ggplot2) 
+    
+    ggplot(data = plottingData, aes(x = date , y = plottingData[,variable])) + 
+        geom_point(color = "Red" , size = I(3) ) + 
         
-        # Create the table containing only the data for the choosen country 
+        #setting some themes and ajustments for the plot to be ready.
         
-        plottingData <- covid_data[covid_data$location == country,]
-        
-        # Create the plot for the choosen variable againt the date.
-        
-        library(ggplot2) 
-        
-        ggplot(data = plottingData, aes(x = date , y = plottingData[,variable])) + 
-                geom_point(color = "Red" , size = I(3) ) + 
-                ylab(gsub(pattern = "_" , replacement = " " , x = variable)) + 
+        ylab(gsub(pattern = "_" , replacement = " " , x = variable)) + 
         ggtitle(label =  gsub(pattern = "_" , replacement = " " , x = variable),     
-                      subtitle = paste(country , "Covid-19")
-                )     +
-                
-                theme(plot.title = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))
-              
+                subtitle = paste(country , "Covid-19")
+        )     +
+        
+        theme(plot.title = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))
+    
 }
 
 
 makePlot("Tunisia",variable = "new_deaths_per_million")
-
+makePlot("India",variable = "new_deaths_per_million")
+makePlot("France",variable = "new_deaths_per_million")
 
 
 # The Comparison plotting Function 
@@ -101,17 +105,17 @@ distinguishFrom <- function(country , continent , variable) {
         
         geom_point(data = distgData , 
                    aes(x = date , y = distgData[, variable]), 
-    color = "Blue" ,
-    size = I(3) , alpha = 0.6 ) + 
-      
+                   color = "Blue" ,
+                   size = I(3) , alpha = 0.6 ) + 
+        
+        
+        ylab(gsub(pattern = "_" , replacement = " " , x = variable)) +
+        ggtitle(label =  gsub(pattern = "_" , replacement = " " , x = variable),
+                subtitle = paste(country , continent , sep = " relatively to ") ) +
+        
+        theme(plot.title = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))
     
-    ylab(gsub(pattern = "_" , replacement = " " , x = variable)) +
-    ggtitle(label =  gsub(pattern = "_" , replacement = " " , x = variable),
-            subtitle = paste(country , continent , sep = " relatively to ") ) +
     
-    theme(plot.title = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))
-
-
 }
 
 distinguishFrom(country = "Tunisia",continent = "Africa",variable = "new_cases")
