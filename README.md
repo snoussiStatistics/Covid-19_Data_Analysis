@@ -2,7 +2,8 @@
 
 This repository contains API that can be used to conduct Covid-19 Analysis from Januray 2020 till april 2021  using R programming.
 
-the data was downloaded from this site https://ourworldindata.org/coronavirus-source-data
+the data was downloaded from this site https://ourworldindata.org/coronavirus-source-data, to use the functions below please download the latest update of the covid-19 data 
+and store it in a variable in your Rstudio called covid_data.
 
 
 ## API of the EDA
