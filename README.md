@@ -12,6 +12,11 @@ for visualizing data change over time for a given variable and a given country (
 
 # - makePlot(country,variable) : 
 
+```R
+makePlot('Tunisia', 'new_cases')
+
+```
+
 makePlot() is a function that takes an arbitrary country and a vraiable ( new_cases , new_deaths , total_cases...)  and return a presentation-ready plot of that variable over time(date)
 
 # - distinguishFrom(country , continent , variable)
