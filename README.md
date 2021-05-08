@@ -1,11 +1,11 @@
 # Covid-19 Data Analysis
 
-This repository will contain Covid-19 Analysis conducted by me using R programming.
+This repository contains API that can be used to conduct Covid-19 Analysis from Januray 2020 till april 2021  using R programming.
 
 the data was downloaded from this site https://ourworldindata.org/coronavirus-source-data
 
 
-## API
+## API of the EDA
 
 My first task will be to create functions easy to use in order to avoid repetetion of the ggplot routine, 
 for visualizing data change over time for a given variable and a given country (or countries).
