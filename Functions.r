@@ -1,6 +1,6 @@
-# Reading Data 
+# Read the latest vesrion of the covid data.
+covid_data <- read.csv("https://covid.ourworldindata.org/data/owid-covid-data.csv")
 
-covid_data <- read.csv("C:/Users/Hamza/Desktop/COVID_R/dataset/2020-01-01_2021-04-28-covid-data.csv")
 
 # Exploring
 
