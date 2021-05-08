@@ -5,7 +5,7 @@ This repository will contain Covid-19 Analysis conducted by me using R programmi
 the data was downloaded from this site https://ourworldindata.org/coronavirus-source-data
 
 
-## First task 
+## API
 
 My first task will be to create functions easy to use in order to avoid repetetion of the ggplot routine, 
 for visualizing data change over time for a given variable and a given country (or countries).
